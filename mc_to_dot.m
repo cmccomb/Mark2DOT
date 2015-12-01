@@ -21,7 +21,7 @@ function mc_to_dot(file_name, T, labels, varargin)
     end
 
     %% Write connections
-    thresh = nanmedian(T(:));
+    thresh = median(T(:));
     for i=1:1:length(T)
         for j=1:1:length(T)
             if T(i,j) > thresh
@@ -40,7 +40,7 @@ function mc_to_dot(file_name, T, labels, varargin)
     else
         if system(['/usr/local/bin/circo -T' extension(2:end) ' ' temp_name ' -o ' file_name]) == 0
             delete(temp_name);
-        elseif system(['/usr/bin/circo -T' extension(2:end) ' ' temp_name ' -o ' file_name]) == 0       
+        elseif system(['/usr/bin/circo -T' extension(2:end) ' ' temp_name ' -o ' file_name]) == 0
             delete(temp_name);
         else
             movefile(temp_name, [path '/' name '.dot']);
