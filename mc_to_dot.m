@@ -9,6 +9,9 @@ function mc_to_dot(file_name, T, labels, varargin)
 
     %% Open file for editing
     [path, name, extension] = fileparts(file_name);
+    if isempty(path)
+        path = '.';
+    end
     temp_name = tempname;
     f = fopen(temp_name, 'w');
 
