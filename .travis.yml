@@ -6,6 +6,7 @@ before_script:
   - sudo add-apt-repository ppa:picaso/octave -y
   - sudo apt-get update
   - sudo apt-get install octave
+  - sudo apt-get install graphviz
 
-script: 
+script:
   - octave test_mc_to_dot.m
