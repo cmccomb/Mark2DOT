@@ -25,7 +25,7 @@ function mc_to_dot(file_name, T, labels, varargin)
     for i=1:1:length(T)
         for j=1:1:length(T)
             if T(i,j) > thresh
-                fprintf(f, '\t%i -> %i [penwidth=%f]\n', i, j, T(i,j)./nanmax(T(:))*6+0.25);
+                fprintf(f, '\t%i -> %i [penwidth=%f]\n', i, j, T(i,j)./max(T(:))*6+0.25);
             end
         end
     end
