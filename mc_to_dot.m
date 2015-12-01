@@ -1,4 +1,11 @@
 function mc_to_dot(file_name, T, labels, varargin)
+    %% To-do List
+    % TODO: Smarter weighting options for edges
+    % TODO: Optiont to hide self-transitions
+    % TODO: Support different shapes and sizes for nodes
+    % TODO: Support different graphviz compilers
+    % TODO: Better error messages when checking /usr/bin and /usr/local/bin
+
     %% Check if labels have been provided. Else, autolabel
     if ~exist('labels', 'var')
         N = length(T);
@@ -41,12 +48,16 @@ function mc_to_dot(file_name, T, labels, varargin)
     if strcmp(extension, '.dot')
         movefile(temp_name, file_name);
     else
-        if system(['/usr/local/bin/circo -T' extension(2:end) ' ' temp_name ' -o ' file_name]) == 0
-            delete(temp_name);
-        elseif system(['/usr/bin/circo -T' extension(2:end) ' ' temp_name ' -o ' file_name]) == 0
-            delete(temp_name);
+        state = system(['/usr/bin/circo -T' extension(2:end) ' ' temp_name ' -o ' file_name])
+        if state ~= 0
+            state = system(['/usr/local/bin/circo -T' extension(2:end) ' ' temp_name ' -o ' file_name])
+            if state ~= 0
+                movefile(temp_name, [path '/' name '.dot']);
+            else
+                  delete(temp_name);
+            end
         else
-            movefile(temp_name, [path '/' name '.dot']);
+            delete(temp_name);
         end
     end
 end
