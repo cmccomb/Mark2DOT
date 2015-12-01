@@ -48,9 +48,9 @@ function mc_to_dot(file_name, T, labels, varargin)
     if strcmp(extension, '.dot')
         movefile(temp_name, file_name);
     else
-        state = system(['/usr/bin/circo -T' extension(2:end) ' ' temp_name ' -o ' file_name])
+        state = system(['/usr/bin/circo -T' extension(2:end) ' ' temp_name ' -o ' file_name]);
         if state ~= 0
-            state = system(['/usr/local/bin/circo -T' extension(2:end) ' ' temp_name ' -o ' file_name])
+            state = system(['/usr/local/bin/circo -T' extension(2:end) ' ' temp_name ' -o ' file_name]);
             if state ~= 0
                 movefile(temp_name, [path '/' name '.dot']);
             else
