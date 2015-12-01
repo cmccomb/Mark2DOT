@@ -1,3 +1,3 @@
 # Mark2DOT
-MATLAB scripts for converting Hidden Markov Models to DOT files.
+MATLAB function for making graphics for Markov Models (or other weighted digraphs) using GraphViz.
 

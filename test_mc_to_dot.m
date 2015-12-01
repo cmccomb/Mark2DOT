@@ -9,21 +9,21 @@ tm = [0.3463    0.0680    0.5537    0.0095    0.0029    0.0029    0.0167
 labels = {'Add Joint', 'Remove Joint', 'Add Member', 'Remove Member', 'Size (All)', 'Size (Single)', 'Move Joint'};
 
 % Test pdf creation
-mc_to_dot('full.pdf', tm, labels)
+mc_to_dot('full.pdf', tm, labels);
 assert(exist('full.pdf', 'file')==2);
+delete('full.pdf');
 
 % Test png creation
-mc_to_dot('full.png', tm, labels)
+mc_to_dot('full.png', tm, labels);
 assert(exist('full.png', 'file')==2);
+delete('full.png');
+
+% Test dot creation
+mc_to_dot('full.dot', tm, labels);
+assert(exist('full.dot', 'file')==2);
+delete('full.dot');
 
 % Test auto-labeling
-mc_to_dot('auto_label.png', tm)
+mc_to_dot('auto_label.png', tm);
 assert(exist('auto_label.png', 'file')==2);
-
-% Test auto-labeling
-mc_to_dot('auto_label.png', tm)
-assert(exist('auto_label.png', 'file')==2);
-
-
-% Test auto-labeling
-mc_to_dot('to_dot.dot', tm)
+delete('auto_label.png');
