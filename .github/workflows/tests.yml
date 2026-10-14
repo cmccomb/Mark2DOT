@@ -1,0 +1,23 @@
+name: MATLAB tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  tests:
+    name: DOT and Graphviz export
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Install Graphviz
+        run: sudo apt-get update && sudo apt-get install -y graphviz
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v3
+      - name: Run tests
+        uses: matlab-actions/run-command@v3
+        with:
+          command: test_mc_to_dot
